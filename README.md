@@ -25,8 +25,8 @@ This repository contains my completed backend-driven web solution to the [Person
    ```code snippet
     PORT=3000
     SESSION_SECRET=your_secret_key
-    ADMIN_USER=admin
-    ADMIN_PASS=password123
+    ADMIN_USER=your_admin_username
+    ADMIN_PASS=your_admin_password
    ```
 4. Start the server using your terminal:
     ```bash
