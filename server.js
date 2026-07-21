@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
@@ -19,8 +20,15 @@ if (!fs.existsSync(ARTICLES_DIR)) {
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Single Session Middleware using FileStore
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    store: new FileStore({ 
+        path: './sessions',
+        retries: 0,
+        logFn: function() {}
+    }),
+    secret: process.env.SESSION_SECRET || 'default_fallback_secret',
     resave: false,
     saveUninitialized: false
 }));
@@ -109,14 +117,21 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
+
     if (username === ADMIN_USER && password === ADMIN_PASS) {
         req.session.isAdmin = true;
-        res.redirect('/admin');
+        
+        req.session.save((err) => {
+            if (err) {
+                console.error('Session save error:', err);
+                return res.render('login', { error: 'Failed to save session. Try again.' });
+            }
+            res.redirect('/admin');
+        });
     } else {
         res.render('login', { error: 'Invalid username or password' });
     }
 });
-
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/home');
