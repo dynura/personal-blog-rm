@@ -1,0 +1,17 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment secrets
+.env
+.env.local
+
+# Dynamic local storage / runtime databases
+articles/*.json
+!articles/.gitkeep
+
+# System OS files
+.DS_Store
+Thumbs.db
