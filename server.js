@@ -133,7 +133,13 @@ app.get('/admin', requireAuth, (req, res) => {
 // 4. Add Article Form & Handler
 app.get('/new', requireAuth, (req, res) => {
     const today = new Date().toISOString().split('T')[0];
-    res.render('new', { today });
+    res.render('new', { 
+        article: { 
+            title: '', 
+            content: '', 
+            date: today 
+        } 
+    });
 });
 
 app.post('/new', requireAuth, (req, res) => {
