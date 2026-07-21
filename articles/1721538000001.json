@@ -1,0 +1,6 @@
+{
+    "id": "1721538000001",
+    "title": "Building a Node.js & Express Blog System",
+    "content": "Welcome to my personal blog! This site was built from scratch using Node.js, Express, and EJS for SSR rendering.\n\nTo demonstrate professional deployment and Git workflows, the code is structured around a branch strategy (sandbox -> staging -> master) and hosted live on Render. Persistent sessions and simple file-based JSON storage power the backend.",
+    "date": "2026-07-21"
+}
