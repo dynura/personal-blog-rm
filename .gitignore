@@ -11,6 +11,9 @@ yarn-error.log*
 # Dynamic local storage / runtime databases
 articles/*.json
 !articles/.gitkeep
+!articles/1721538000001.json
+!articles/1721538000002.json
+!articles/1721538000003.json
 
 # System OS files
 .DS_Store
