@@ -15,3 +15,6 @@ articles/*.json
 # System OS files
 .DS_Store
 Thumbs.db
+
+# Ignore session storage files
+sessions/
